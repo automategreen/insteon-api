@@ -106,13 +106,13 @@ API
 Add `require` statement to the app to access the Insteon class
 
 ```js
-var Insteon = require('insteon-rest');
+var api = require('insteon-rest');
 ```
 
 The Insteon class inherits [EventEmitter](http://nodejs.org/api/events.html)
 
 
-#### insteon.connect(host, [port], [connectListener])
+#### insteon.connect()
 
 Creates a connection to the gateway.
 
