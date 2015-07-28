@@ -1,4 +1,4 @@
-insteon-rest [![Build Status](https://travis-ci.org/automategreen/insteon-rest.png)](https://travis-ci.org/automategreen/insteon-rest)
+insteon-api [![Build Status](https://travis-ci.org/automategreen/insteon-api.png)](https://travis-ci.org/automategreen/insteon-api)
 ===============
 > a node package for the Insteon REST API
 ***
@@ -8,7 +8,7 @@ Overview
 
 **WARNING** This package is under development and not functional.
 
-insteon-rest is a node package for the Insteon REST API. The goal of this package is to mirror our existing [home-controller package](https://github.com/automategreen/home-controller). This will reduce the effort of moving your existing code to the new Hub.
+insteon-api is a node package for the Insteon REST API. The goal of this package is to mirror our existing [home-controller package](https://github.com/automategreen/home-controller). This will reduce the effort of moving your existing code to the new Hub.
 
 **Only the new Insteon Hub 2245 is supported.**
 
@@ -61,14 +61,14 @@ Getting Started
 
 Install via npm:
 
-`npm install insteon-rest`
+`npm install insteon-api`
 
 ### Example
 
-The example below is a simple RESTful interface using the insteon-rest module and Express.
+The example below is a simple RESTful interface using the insteon-api module and Express.
 
 ```js
-var Insteon = require('insteon-rest');
+var Insteon = require('insteon-api');
 var hub = new Insteon();
 var express = require('express');
 var app = express();
@@ -106,7 +106,7 @@ API
 Add `require` statement to the app to access the Insteon class
 
 ```js
-var api = require('insteon-rest');
+var api = require('insteon-api');
 ```
 
 The Insteon class inherits [EventEmitter](http://nodejs.org/api/events.html)
