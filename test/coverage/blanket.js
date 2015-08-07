@@ -1,4 +1,4 @@
 require('blanket')({
   // Only files that match the pattern will be instrumented
-  pattern: 'insteon-rest/lib/'
+  pattern: 'insteon-api/lib/'
 });
