@@ -22,48 +22,89 @@ describe('InsteonAPI light', function(){
       }
     });
 
+    var n = 0;
+
     var get = sinon.stub(api.request, 'get');
-    get.onCall(0).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':50},
       'command':{'command':'on','level':50,'device_id':597465}
     });
-    get.onCall(1).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':100},
       'command':{'command':'on','level':100,'device_id':597465}
     });
-    get.onCall(2).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
+      'id':846822,
+      'status':'succeeded',
+      'response':{'level':100},
+      'command':{'command':'on','level':100,'device_id':597465}
+    });
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':0},
       'command':{'command':'off','device_id':597465}
     });
-    get.onCall(3).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':0},
       'command':{'command':'fast_off','device_id':597465}
     });
-    get.onCall(4).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':100},
       'command':{'command':'fast_on','device_id':597465}
     });
-    get.onCall(5).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':6},
       'command':{'command':'get_status','device_id':597465}
     });
-    get.onCall(6).yields(null, {statusCode: 200}, {
+    get.onCall(n++).yields(null, {statusCode: 200}, {
+      'id':846822,
+      'status':'succeeded',
+      'response':{'level':6},
+      'command':{'command':'get_status','device_id':597465}
+    });
+    get.onCall(n++).yields(null, {statusCode: 200}, {
       'id':846822,
       'status':'succeeded',
       'response':{'level':66},
       'command':{'command':'instant_on','level':67,'device_id':597465}
+    });
+
+    get.onCall(n++).yields(null, {statusCode: 200}, {
+      'id':846822,
+      'status':'succeeded',
+      'response':{'level':66},
+      'command':{'command':'dim','level':67,'device_id':597465}
+    });
+
+    get.onCall(n++).yields(null, {statusCode: 200}, {
+      'id':846822,
+      'status':'succeeded',
+      'response':{'level':66},
+      'command':{'command':'brighten','level':67,'device_id':597465}
+    });
+
+    get.yields(null, {statusCode: 200},{
+      'deviceID':12345,'DeviceID':67890,'DeviceName':'Test',
+      'IconID':46,'AlertOff':0,'AlertOn':0,'AlertsEnabled':false,
+      'AutoStatus':false,'BeepOnPress':true,'BlinkOnTraffic':false,
+      'ConfiguredGroups':1,'CustomOff':'','CustomOn':'','DayMask':0,
+      'DevCat':1,'DeviceType':0,'DimLevel':254,'EnableCustomOff':false,
+      'EnableCustomOn':false,'Favorite':true,'FirmwareVersion':65,
+      'Group':1,'Humidity':false,'InsteonEngine':2,'InsteonID':'AABBCC',
+      'LEDLevel':32,'LinkWithHub':0,'LocalProgramLock':false,'OffTime':'',
+      'OnTime':'','OperationFlags':0,'RampRate':28,'SerialNumber':'AABBCC',
+      'SubCat':14,'TimerEnabled':false
     });
 
     sinon
@@ -71,6 +112,10 @@ describe('InsteonAPI light', function(){
       .yields(null, {statusCode: 202}, {
         'status':'pending','link':'/api/v2/commands/846822','id':846822
       });
+
+    sinon
+      .stub(api.request, 'put')
+      .yields(null, {statusCode: 204});
 
     done();
   });
@@ -100,6 +145,10 @@ describe('InsteonAPI light', function(){
     .catch(function (err) {
       done(err);
     });
+  });
+
+  it('turn on (default 100%) (cb)', function (done) {
+    api.light(12345).turnOn(done);
   });
 
   it('turn off', function (done) {
@@ -146,6 +195,10 @@ describe('InsteonAPI light', function(){
     });
   });
 
+  it('get level (cb)', function (done) {
+    api.light(12345).level(done);
+  });
+
   it('set level', function (done) {
     api.light(12345).level(67)
     .then(function(rsp) {
@@ -156,5 +209,76 @@ describe('InsteonAPI light', function(){
       done(err);
     });
   });
+
+  it('dim (cb)', function (done) {
+    api.light(12345).dim(done);
+  });
+
+  it('brighten (cb)', function (done) {
+    api.light(12345).brighten(done);
+  });
+
+
+  it('get on level', function (done) {
+    api.light(12345).onLevel()
+    .then(function(rsp) {
+      rsp.should.be.eql(254/255*100);
+      done();
+    })
+    .catch(function (err) {
+      done(err);
+    });
+  });
+
+  it('get on level (cb)', function (done) {
+    api.light(12345).onLevel(done);
+  });
+
+
+  it('set on level', function (done) {
+    api.light(12345).onLevel(75)
+    .then(function() {
+      done();
+    })
+    .catch(function (err) {
+      done(err);
+    });
+  });
+
+  it('set on level (cb)', function (done) {
+    api.light(12345).onLevel(100, done);
+  });
+
+  it('get ramp rate', function (done) {
+    api.light(12345).rampRate()
+    .then(function(rsp) {
+      rsp.should.be.eql(500);
+      done();
+    })
+    .catch(function (err) {
+      done(err);
+    });
+  });
+
+  it('get ramp rate (cb)', function (done) {
+    api.light(12345).rampRate(done);
+  });
+
+
+  it('set ramp rate', function (done) {
+    api.light(12345).rampRate(2000)
+    .then(function() {
+      done();
+    })
+    .catch(function (err) {
+      done(err);
+    });
+  });
+
+  it('set ramp rate (cb)', function (done) {
+    api.light(12345).rampRate(1, done);
+  });
+
+
 
 });
