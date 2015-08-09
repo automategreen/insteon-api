@@ -66,12 +66,18 @@ describe('InsteonAPI connect', function(){
         message: 'No AuthKeys found',
         code: 4032
       });
+
+    var get = sinon.stub(request, 'get');
+    get.yields(null, {statusCode: 200},
+        {'HouseList':[]});
+
     done();
   });
 
 
   after(function(done){
     request.post.restore();
+    request.get.restore();
     done();
   });
 

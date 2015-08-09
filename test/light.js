@@ -122,6 +122,8 @@ describe('InsteonAPI light', function(){
 
   after(function(done){
     api.request.get.restore();
+    api.request.post.restore();
+    api.request.put.restore();
     done();
   });
 
