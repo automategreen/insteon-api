@@ -1,5 +1,5 @@
 {
-  "name": "insteon-rest",
+  "name": "insteon-api",
   "version": "0.0.1",
   "description": "a node package for the Insteon REST API",
   "main": "index.js",
