@@ -4,7 +4,7 @@ var InsteonAPI = require('../lib/');
 
 var api = new InsteonAPI({key: process.env.INSTEON_API_KEY});
 
-api.on('connect', function() {
+api.on('auth', function() {
   console.log('Connected');
   console.log('Access Token: ' + api.accessToken);
   console.log('Refresh Token: ' + api.refreshToken);
@@ -14,7 +14,7 @@ api.on('error', function(err) {
   console.log('Error: ', err);
 });
 
-api.connect({
+api.auth({
  username: process.env.INSTEON_USERNAME,
  password: process.env.INSTEON_PASSWORD
 });
