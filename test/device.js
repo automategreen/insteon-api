@@ -99,7 +99,10 @@ describe('InsteonAPI device', function(){
       device.name = 'Automate Green';
       return device.save();
     })
-    .then(done)
+    .then(function (device) {
+      device.should.have.property('name', 'Automate Green');
+      done();
+    })
     .catch(function (err) {
       done(err);
     });

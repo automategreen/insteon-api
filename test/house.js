@@ -95,7 +95,10 @@ describe('InsteonAPI house', function(){
       house.name = 'Automate Green';
       return house.save();
     })
-    .then(done)
+    .then(function (house) {
+      house.should.have.property('name', 'Automate Green');
+      done();
+    })
     .catch(function (err) {
       done(err);
     });
