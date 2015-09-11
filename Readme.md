@@ -6,8 +6,6 @@ insteon-api [![Build Status](https://travis-ci.org/automategreen/insteon-api.png
 Overview
 --------
 
-**WARNING** This package is under development.
-
 insteon-api is a node package for the Insteon REST API. The goal of this package is to mirror our existing [home-controller package](https://github.com/automategreen/home-controller). This will reduce the effort of moving your existing code to the new Hub.
 
 **Only the new Insteon Hub (2245) is supported.**
