@@ -1,6 +1,6 @@
 {
   "name": "insteon-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "a node package for the Insteon REST API",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/automategreen/insteon-rest.git"
+    "url": "https://github.com/automategreen/insteon-api.git"
   },
   "keywords": [
     "automation",
@@ -29,13 +29,13 @@
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.2.5",
     "should": "^7.0.2",
-    "sinon": "^1.15.4"
+    "sinon": "^1.15.4",
+    "travis-cov": "^0.2.5"
   },
   "dependencies": {
     "debug": "^2.2.0",
     "eventsource": "^0.1.6",
     "q": "^1.4.1",
-    "request": "^2.60.0",
-    "travis-cov": "^0.2.5"
+    "request": "^2.60.0"
   }
 }
