@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "eventsource": "^0.1.6",
+    "eventsource": "^0.2.1",
     "q": "^1.4.1",
     "request": "^2.60.0"
   }
